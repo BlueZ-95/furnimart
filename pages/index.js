@@ -1,5 +1,13 @@
-import Counter from '../components/counter'
+import { useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import Counter from "../components/counter";
+import { Home } from "../components/Home/Home";
+import { currentUserState } from "../lib/recoil-atoms";
 
-const IndexPage = () => <Counter />
+const IndexPage = () => {
+  let currentUser = useRecoilValue(currentUserState);
 
-export default IndexPage
+  return <Home />;
+};
+
+export default IndexPage;
