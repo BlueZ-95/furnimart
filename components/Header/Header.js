@@ -1,14 +1,14 @@
-import { Container, Grid } from "@mui/material";
-
 export const Header = () => {
   return (
-    <Container>
-      <Grid container>
-        <Grid item sm={3}>
-          <h1>Furnimart</h1>
-        </Grid>
-        <Grid item sm={9}>
-          <ul>
+    <div className="header bg-gray-100 py-8">
+      <div className="container mx-auto px-48">
+        <div className="flex items-center justify-between">
+          <div className="header__logo">
+            <h1 className="text-3xl font-bold">
+              <span className="text-green-500">Furni</span>mart
+            </h1>
+          </div>
+          <ul className="header__navigation text-sm text-gray-700 font-medium">
             <li>HOME</li>
             <li>FEATURES</li>
             <li>SERVICES</li>
@@ -16,8 +16,8 @@ export const Header = () => {
             <li>SHOP</li>
             <li>NEWS</li>
           </ul>
-        </Grid>
-      </Grid>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 };

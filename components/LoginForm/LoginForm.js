@@ -46,8 +46,10 @@ export const LoginForm = () => {
 
   return (
     <main className="h-screen flex flex-col items-center justify-center bg-gray-50">
-      <h1 className="text-4xl mb-5">Furnimart</h1>
-      <div className="bg-white rounded-xl shadow-xl py-8">
+      <h1 className="text-4xl">
+        <span className="text-green-500">Furni</span>mart
+      </h1>
+      <div className="bg-white rounded-xl shadow-xl py-8 my-8">
         <h2 className="text-gray-700 text-3xl text-center">
           {isLoginFormVisible ? "Login" : "Signup"}
         </h2>
@@ -115,9 +117,7 @@ export const LoginForm = () => {
               </span> */}
             <button
               form="loginSignupForm"
-              className={`${
-                !isRequestSent ? "block" : "hidden"
-              } w-1/2 h-10 bg-indigo-500 rounded text-white mt-10`}
+              className={`w-1/2 h-10 bg-green-500 rounded text-white mt-10`}
               type="submit"
             >
               {isLoginFormVisible ? "Login" : "Signup"}
