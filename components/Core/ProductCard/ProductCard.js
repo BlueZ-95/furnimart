@@ -1,6 +1,14 @@
 import { FiHeart } from "react-icons/fi";
+import { useSetRecoilState } from "recoil";
+import { currentCartState } from "../../../lib/recoil-atoms";
 
 export const ProductCard = ({ productImage, productTitle, productPrice }) => {
+  const currentCart = useSetRecoilState(currentCartState);
+
+  const addItemInCart = () => {
+    currentCart((prevItems) => [...prevItems, { itemName: "Abc" }]);
+  };
+
   return (
     <div className="product-card inline-block my-4">
       <div className="group product-card__image cursor-pointer relative w-52 rounded overflow-hidden flex justify-center">
@@ -9,7 +17,9 @@ export const ProductCard = ({ productImage, productTitle, productPrice }) => {
           <span className="p-3 border-r border-gray-200 hover:text-red-400">
             <FiHeart />
           </span>
-          <p className="p-3 text-sm">ADD TO CART</p>
+          <p className="p-3 text-sm" onClick={addItemInCart}>
+            ADD TO CART
+          </p>
         </div>
       </div>
       <p className="product-card__title text-sm mt-4 text-gray-500">

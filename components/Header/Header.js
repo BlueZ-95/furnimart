@@ -1,9 +1,10 @@
 import { FiShoppingCart, FiUser } from "react-icons/fi";
 import { useRecoilValue } from "recoil";
-import { currentUserName } from "../../lib/recoil-atoms";
+import { numberOfItemsInCart, userNameState } from "../../lib/recoil-atoms";
 
 export const Header = () => {
-  const userName = useRecoilValue(currentUserName);
+  const userName = useRecoilValue(userNameState);
+  const cartItemNumber = useRecoilValue(numberOfItemsInCart);
 
   return (
     <div className="header bg-gray-100 py-8">
@@ -16,7 +17,12 @@ export const Header = () => {
           </div>
           <ul className="header__navigation text-xl text-gray-700 font-medium cursor-pointer">
             <li>
-              <FiShoppingCart />
+              <div className="relative">
+                <span className="absolute flex items-center justify-center top-0 right-full text-sm bg-green-400 w-5 h-5 rounded-full">
+                  {cartItemNumber}
+                </span>
+                <FiShoppingCart />
+              </div>
             </li>
             <li>
               <FiUser />

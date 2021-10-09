@@ -26,11 +26,13 @@ export const LoginForm = () => {
           return;
         }
         setUserState(user);
+        console.log(user);
+        localStorage.setItem("currentUser", JSON.stringify(user));
         router.push("/");
       })
       .catch((err) => {
         console.log(err);
-        alert("Credentials Did not match");
+        alert("Credentials did not match !");
       });
   };
 
@@ -38,11 +40,6 @@ export const LoginForm = () => {
     var buttonText = e.target.innerText;
     setIsLoginFormVisible(isLoginFormVisible ? false : true);
   };
-
-  function setUserDetailsToLocal(userDetails) {
-    localStorage.setItem("userDetails", JSON.stringify({ userDetails }));
-    router.push("/");
-  }
 
   return (
     <main className="h-screen flex flex-col items-center justify-center bg-gray-50">
