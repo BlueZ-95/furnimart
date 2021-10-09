@@ -18,9 +18,11 @@ export const Header = () => {
           <ul className="header__navigation text-xl text-gray-700 font-medium cursor-pointer">
             <li>
               <div className="relative">
-                <span className="absolute flex items-center justify-center top-0 right-full text-sm bg-green-400 w-5 h-5 rounded-full">
-                  {cartItemNumber}
-                </span>
+                {cartItemNumber > 0 && (
+                  <span className="absolute flex items-center justify-center top-0 right-full text-sm bg-green-400 w-5 h-5 rounded-full">
+                    {cartItemNumber}
+                  </span>
+                )}
                 <FiShoppingCart />
               </div>
             </li>
