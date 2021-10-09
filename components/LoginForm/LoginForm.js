@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { useState } from "react";
 import { currentUserState } from "../../lib/recoil-atoms";
 
 export const LoginForm = () => {
   const router = useRouter();
-  const [userState, setUserState] = useRecoilState(currentUserState);
+  const setUserState = useSetRecoilState(currentUserState);
   const [isLoginFormVisible, setIsLoginFormVisible] = useState(true);
 
   let baseURL = "http://localhost:3001";
@@ -63,7 +63,7 @@ export const LoginForm = () => {
             <input
               className={`${
                 isLoginFormVisible ? "block" : "hidden"
-              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-blue-700`}
+              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-green-700`}
               name="loginEmail"
               type="text"
               placeholder="Email"
@@ -71,7 +71,7 @@ export const LoginForm = () => {
             <input
               className={`${
                 isLoginFormVisible ? "block" : "hidden"
-              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-blue-700`}
+              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-green-700`}
               name="loginPassword"
               type="password"
               placeholder="Password"
@@ -81,7 +81,7 @@ export const LoginForm = () => {
             <input
               className={`${
                 !isLoginFormVisible ? "block" : "hidden"
-              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-blue-700`}
+              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-green-700`}
               name="userName"
               type="text"
               placeholder="Name"
@@ -89,7 +89,7 @@ export const LoginForm = () => {
             <input
               className={`${
                 !isLoginFormVisible ? "block" : "hidden"
-              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-1 outline-none focus:border-blue-700`}
+              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-green-700`}
               name="signupEmail"
               type="text"
               placeholder="Email"
@@ -97,7 +97,7 @@ export const LoginForm = () => {
             <input
               className={`${
                 !isLoginFormVisible ? "block" : "hidden"
-              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-blue-700`}
+              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-green-700`}
               name="signupPassword"
               type="password"
               placeholder="Password"
@@ -105,7 +105,7 @@ export const LoginForm = () => {
             <input
               className={`${
                 !isLoginFormVisible ? "block" : "hidden"
-              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-blue-700`}
+              } w-full bg-white px-2 border border-gray-400 rounded-lg my-2 py-2 outline-none focus:border-green-700`}
               name="signupConfirmPassword"
               type="password"
               placeholder="Confirm Password"
@@ -124,7 +124,7 @@ export const LoginForm = () => {
             </button>
             <button
               type="button"
-              className="text-blue-500 cursor-pointer my-5"
+              className="text-gray-700 cursor-pointer my-5"
               onClick={toggleLoginSignup}
             >
               {isLoginFormVisible ? "Create account" : "Already have account"}

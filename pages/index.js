@@ -5,8 +5,6 @@ import { Home } from "../components/Home/Home";
 import { currentUserState } from "../lib/recoil-atoms";
 
 const IndexPage = () => {
-  let currentUser = useRecoilValue(currentUserState);
-
   return <Home />;
 };
 
