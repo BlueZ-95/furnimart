@@ -1,4 +1,5 @@
-import { FiShoppingCart, FiUser } from "react-icons/fi";
+import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi";
+import { IoSearch } from "react-icons/io5";
 import { useRecoilValue } from "recoil";
 import { numberOfItemsInCart, userNameState } from "../../lib/recoil-atoms";
 
@@ -14,6 +15,17 @@ export const Header = () => {
             <h1 className="text-3xl font-bold">
               <span className="text-green-500">Furni</span>mart
             </h1>
+          </div>
+          <div className="header__searchbar flex items-center justify-center border rounded-lg bg-white">
+            <input
+              type="text"
+              className="w-96 bg-white mx-1 p-2 outline-none focus:border-green-700"
+              name="searchbar"
+              id="searchbar"
+            />
+            <span className="mx-3 text-xl text-gray-400">
+              <IoSearch />
+            </span>
           </div>
           <ul className="header__navigation text-xl text-gray-700 font-medium cursor-pointer">
             <li>
