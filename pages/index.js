@@ -1,11 +1,28 @@
-import { useEffect } from "react";
-import { useRecoilValue } from "recoil";
-import Counter from "../components/counter";
+import { Header } from "../components";
 import { Home } from "../components/Home/Home";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
 import { currentUserState } from "../lib/recoil-atoms";
 
 const IndexPage = () => {
-  return <Home />;
+  const router = useRouter();
+  const setUserState = useSetRecoilState(currentUserState);
+
+  useEffect(() => {
+    const _currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (_currentUser) {
+      setUserState(_currentUser);
+    } else {
+      router.push("/login");
+    }
+  }, []);
+  return (
+    <>
+      <Header />
+      <Home />;
+    </>
+  );
 };
 
 export default IndexPage;

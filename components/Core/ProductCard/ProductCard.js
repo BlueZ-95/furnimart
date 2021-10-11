@@ -6,7 +6,14 @@ export const ProductCard = ({ productImage, productTitle, productPrice }) => {
   const currentCart = useSetRecoilState(currentCartState);
 
   const addItemInCart = () => {
-    currentCart((prevItems) => [...prevItems, { itemName: "Abc" }]);
+    currentCart((prevItems) => [
+      ...prevItems,
+      {
+        productImage: productImage,
+        productTitle: productTitle,
+        productPrice: productPrice,
+      },
+    ]);
   };
 
   return (

@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi";
+import { FiShoppingCart, FiUser } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import Link from "next/link";
 import {
+  currentCartState,
   currentUserState,
   numberOfItemsInCart,
   userNameState,
@@ -14,10 +16,12 @@ export const Header = () => {
   const cartItemNumber = useRecoilValue(numberOfItemsInCart);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
   const _currentUserState = useSetRecoilState(currentUserState);
+  const _currentCartState = useSetRecoilState(currentCartState);
   const router = useRouter();
 
   const logoutUser = () => {
     _currentUserState({});
+    _currentCartState([]);
     localStorage.removeItem("currentUser");
     router.push("/login");
   };
@@ -27,9 +31,11 @@ export const Header = () => {
       <div className="container mx-auto px-48">
         <div className="flex items-center justify-between">
           <div className="header__logo">
-            <h1 className="text-3xl font-bold">
-              <span className="text-green-500">Furni</span>mart
-            </h1>
+            <Link href="/">
+              <h1 className="text-3xl font-bold cursor-pointer">
+                <span className="text-green-500">Furni</span>mart
+              </h1>
+            </Link>
           </div>
           <div className="header__searchbar flex items-center justify-center border rounded-lg bg-white">
             <input
@@ -50,7 +56,9 @@ export const Header = () => {
                     {cartItemNumber}
                   </span>
                 )}
-                <FiShoppingCart />
+                <Link href="/cart">
+                  <FiShoppingCart />
+                </Link>
               </div>
             </li>
             <li>
