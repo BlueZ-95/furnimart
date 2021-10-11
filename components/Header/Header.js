@@ -1,11 +1,26 @@
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { FiSearch, FiShoppingCart, FiUser } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
-import { useRecoilValue } from "recoil";
-import { numberOfItemsInCart, userNameState } from "../../lib/recoil-atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import {
+  currentUserState,
+  numberOfItemsInCart,
+  userNameState,
+} from "../../lib/recoil-atoms";
 
 export const Header = () => {
   const userName = useRecoilValue(userNameState);
   const cartItemNumber = useRecoilValue(numberOfItemsInCart);
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+  const _currentUserState = useSetRecoilState(currentUserState);
+  const router = useRouter();
+
+  const logoutUser = () => {
+    _currentUserState({});
+    localStorage.removeItem("currentUser");
+    router.push("/login");
+  };
 
   return (
     <div className="header bg-gray-100 py-8">
@@ -27,7 +42,7 @@ export const Header = () => {
               <IoSearch />
             </span>
           </div>
-          <ul className="header__navigation text-xl text-gray-700 font-medium cursor-pointer">
+          <ul className="header__navigation text-xl text-gray-700 font-medium cursor-pointer select-none">
             <li>
               <div className="relative">
                 {cartItemNumber > 0 && (
@@ -39,9 +54,33 @@ export const Header = () => {
               </div>
             </li>
             <li>
-              <FiUser />
+              <div className="relative">
+                <FiUser
+                  onClick={(e) => setIsSettingsVisible(!isSettingsVisible)}
+                />
+                <ul
+                  className={`${
+                    isSettingsVisible ? "scale-100" : "scale-0"
+                  } transform origin-top-right overflow-hidden transition duration-75 ease-in z-10 absolute right-0 top-full bg-white rounded shadow-2xl text-center mt-3`}
+                >
+                  <li className="px-4 w-full py-1">
+                    Hi, <span className="font-bold">{userName}</span>
+                  </li>
+                  <li className="px-4 w-full py-1 hover:bg-gray-300 whitespace-nowrap">
+                    My Orders
+                  </li>
+                  <li className="px-4 w-full py-1 hover:bg-gray-300">
+                    Settings
+                  </li>
+                  <li
+                    className="px-4 w-full py-1 hover:bg-gray-300"
+                    onClick={logoutUser}
+                  >
+                    Logout
+                  </li>
+                </ul>
+              </div>
             </li>
-            <li>{userName}</li>
           </ul>
         </div>
       </div>
