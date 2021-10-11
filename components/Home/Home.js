@@ -10,7 +10,6 @@ export const Home = () => {
 
   useEffect(() => {
     const _currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    console.log(_currentUser);
     if (_currentUser) {
       setUserState(_currentUser);
     } else {

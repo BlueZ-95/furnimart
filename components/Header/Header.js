@@ -19,7 +19,7 @@ export const Header = () => {
           <div className="header__searchbar flex items-center justify-center border rounded-lg bg-white">
             <input
               type="text"
-              className="w-96 bg-white mx-1 p-2 outline-none focus:border-green-700"
+              className="w-96 bg-white mx-1 p-2 outline-none"
               name="searchbar"
               id="searchbar"
             />
@@ -31,7 +31,7 @@ export const Header = () => {
             <li>
               <div className="relative">
                 {cartItemNumber > 0 && (
-                  <span className="absolute flex items-center justify-center top-0 right-full text-sm bg-green-400 w-5 h-5 rounded-full">
+                  <span className="absolute flex items-center justify-center top-0 right-full text-sm font-bold bg-green-500 text-white w-5 h-5 rounded-full">
                     {cartItemNumber}
                   </span>
                 )}

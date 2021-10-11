@@ -13,32 +13,54 @@ export const LoginForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    const user = {
-      email: data.get("loginEmail"),
-      password: data.get("loginPassword"),
-    };
 
-    fetch(`${baseURL}/users?email=${user.email}&password=${user.password}`)
-      .then((res) => res.json())
-      .then((user) => {
-        if (Object.getOwnPropertyNames(user).length === 0) {
-          return;
-        }
-        setUserState(user);
-        console.log(user);
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        router.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Credentials did not match !");
-      });
+    if (isLoginFormVisible) {
+      console.log("if");
+      const user = {
+        email: data.get("loginEmail"),
+        password: data.get("loginPassword"),
+      };
+
+      fetch(`${baseURL}/users?email=${user.email}&password=${user.password}`)
+        .then((res) => res.json())
+        .then((user) => {
+          processUser(user);
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Credentials did not match !");
+        });
+    } else {
+      console.log("else");
+      const user = {
+        name: data.get("userName"),
+        email: data.get("signupEmail"),
+        password: data.get("signupPassword"),
+      };
+      fetch(
+        `${baseURL}/addUser?name=${user.name}&email=${user.email}&password=${user.password}`
+      )
+        .then((res) => res.json())
+        .then((user) => {
+          processUser(user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  const processUser = (user) => {
+    if (Object.getOwnPropertyNames(user).length === 0) {
+      return;
+    }
+    setUserState(user);
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    router.push("/");
   };
 
   const toggleLoginSignup = (e) => {
-    var buttonText = e.target.innerText;
-    setIsLoginFormVisible(isLoginFormVisible ? false : true);
+    setIsLoginFormVisible(!isLoginFormVisible);
   };
 
   return (
@@ -124,7 +146,7 @@ export const LoginForm = () => {
               className="text-gray-700 cursor-pointer my-5"
               onClick={toggleLoginSignup}
             >
-              {isLoginFormVisible ? "Create account" : "Already have account"}
+              {isLoginFormVisible ? "Create account" : "Already have account?"}
             </button>
           </span>
         </span>
