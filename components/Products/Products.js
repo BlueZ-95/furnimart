@@ -13,7 +13,7 @@ export const Products = () => {
       });
   }, []);
   return (
-    <div className="products container mx-auto px-48 py-8">
+    <div className="products container mx-auto px-40 py-8">
       <div className="flex flex-wrap items-start justify-between">
         {products?.map((product, index) => {
           return (
