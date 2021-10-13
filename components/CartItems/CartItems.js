@@ -5,18 +5,19 @@ import {
   currentCartState,
   numberOfItemsInCart,
   totalAmount,
+  userNameState,
 } from "../../lib/recoil-atoms";
 
 export const CartItems = () => {
   const [_currentCartState, _setCurrentCartState] =
     useRecoilState(currentCartState);
   const cartItemNumber = useRecoilValue(numberOfItemsInCart);
-
+  const userName = useRecoilValue(userNameState);
   const _totalAmount = useRecoilState(totalAmount);
 
   return (
-    <div className="cart-items flex flex-row justify-around container mx-auto px-40 py-8">
-      <div className="cart-items__details border-r w-9/12">
+    <div className="cart-items flex flex-row justify-around container mx-auto px-40">
+      <div className="cart-items__details border-r border-gray-300 w-9/12 py-8">
         <div className="cart-items__title-container text-center flex flex-col justify-center items-center my-4">
           <span className="cart-items__icon text-4xl">
             <FiShoppingCart />
@@ -37,7 +38,7 @@ export const CartItems = () => {
         </div>
       </div>
       {/* Shipping Information */}
-      <div className="cart-items__overview w-1/4 pl-4">
+      <div className="cart-items__overview w-3/12 pl-4 py-8">
         <div className="cart-items__overview-card">
           <div className="cart-items__shipping-information rounded-xl bg-gray-100 my-4 px-8 py-6 text-gray-700">
             <h2 className="text-lg font-bold text-black">
@@ -45,7 +46,7 @@ export const CartItems = () => {
             </h2>
             <div className="cart-items__shipping-name flex my-2">
               <FiUser className="text-xl text-green-500" />
-              <p className="pl-3">Adele Burke</p>
+              <p className="pl-3">{userName}</p>
             </div>
             <div className="cart-items__shipping-address flex my-2">
               <FiMapPin className="text-3xl text-green-500" />
