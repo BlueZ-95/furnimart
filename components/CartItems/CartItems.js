@@ -13,7 +13,16 @@ export const CartItems = () => {
     useRecoilState(currentCartState);
   const cartItemNumber = useRecoilValue(numberOfItemsInCart);
   const userName = useRecoilValue(userNameState);
-  const _totalAmount = useRecoilState(totalAmount);
+  const _totalAmount = useRecoilValue(totalAmount);
+
+  const removeItemFromCart = (itemToRemoveId) => {
+    let cartItems = [..._currentCartState];
+    cartItems.splice(
+      cartItems.findIndex((item) => item.productId === itemToRemoveId),
+      1
+    );
+    _setCurrentCartState(cartItems);
+  };
 
   return (
     <div className="cart-items flex flex-row justify-around container mx-auto px-40">
@@ -29,9 +38,11 @@ export const CartItems = () => {
           {_currentCartState.map((item) => {
             return (
               <CartItem
+                productId={item.productId}
                 image={item.productImage}
                 title={item.productTitle}
                 price={item.productPrice}
+                removeItem={removeItemFromCart}
               />
             );
           })}
