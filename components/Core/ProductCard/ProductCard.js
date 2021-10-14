@@ -1,19 +1,19 @@
 import { FiHeart } from "react-icons/fi";
-import { useSetRecoilState } from "recoil";
-import { currentCartState } from "../../../lib/recoil-atoms";
 
-export const ProductCard = ({ productImage, productTitle, productPrice }) => {
-  const currentCart = useSetRecoilState(currentCartState);
-
-  const addItemInCart = () => {
-    currentCart((prevItems) => [
-      ...prevItems,
-      {
-        productImage: productImage,
-        productTitle: productTitle,
-        productPrice: productPrice,
-      },
-    ]);
+export const ProductCard = ({
+  productId,
+  productImage,
+  productTitle,
+  productPrice,
+  addItemToCart,
+}) => {
+  const _addItemInCart = () => {
+    addItemToCart({
+      productId: productId,
+      productImage: productImage,
+      productTitle: productTitle,
+      productPrice: productPrice,
+    });
   };
 
   return (
@@ -24,7 +24,7 @@ export const ProductCard = ({ productImage, productTitle, productPrice }) => {
           <span className="p-3 border-r border-gray-200 hover:text-red-400">
             <FiHeart />
           </span>
-          <p className="p-3 text-sm hover:bg-gray-200" onClick={addItemInCart}>
+          <p className="p-3 text-sm hover:bg-gray-200" onClick={_addItemInCart}>
             ADD TO CART
           </p>
         </div>
