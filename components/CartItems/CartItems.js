@@ -31,8 +31,12 @@ export const CartItems = () => {
           <span className="cart-items__icon text-4xl">
             <FiShoppingCart />
           </span>
-          <h2 className="text-4xl font-bold">Confirm Cart</h2>
-          <p className="text-2xl text-gray-500">{cartItemNumber} Items</p>
+          {_currentCartState.length > 0 && (
+            <>
+              <h2 className="text-4xl font-bold">Confirm Cart</h2>
+              <p className="text-2xl text-gray-500">{cartItemNumber} Items</p>
+            </>
+          )}
         </div>
         <div className="cart-items__items-list flex flex-wrap">
           {_currentCartState.length > 0 ? (
@@ -48,8 +52,8 @@ export const CartItems = () => {
               );
             })
           ) : (
-            <h2 className="text-3xl text-gray-400 mx-auto">
-              There are no items in cart
+            <h2 className="text-3xl text-gray-400 mx-auto mt-4">
+              There's nothing in your cart !!!
             </h2>
           )}
         </div>
