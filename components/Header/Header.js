@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { FiShoppingCart, FiUser } from "react-icons/fi";
 import { IoSearch } from "react-icons/io5";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import Link from "next/link";
 import {
   currentCartState,
@@ -15,13 +15,14 @@ export const Header = () => {
   const userName = useRecoilValue(userNameState);
   const cartItemNumber = useRecoilValue(numberOfItemsInCart);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
-  const _currentUserState = useSetRecoilState(currentUserState);
-  const _currentCartState = useSetRecoilState(currentCartState);
   const router = useRouter();
+  const resetUser = useResetRecoilState(currentUserState);
+  const resetCart = useResetRecoilState(currentCartState);
 
   const logoutUser = () => {
-    _currentUserState({});
-    _currentCartState([]);
+    // Reset user and cart atoms
+    resetUser();
+    resetCart();
     localStorage.removeItem("currentUser");
     router.push("/login");
   };

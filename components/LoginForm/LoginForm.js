@@ -14,13 +14,15 @@ export const LoginForm = () => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
+    // Check if user is trying to login or signup
     if (isLoginFormVisible) {
-      console.log("if");
+      // Get user data from
       const user = {
         email: data.get("loginEmail"),
         password: data.get("loginPassword"),
       };
 
+      // Send user data to server to authenticate
       fetch(`${baseURL}/users?email=${user.email}&password=${user.password}`)
         .then((res) => res.json())
         .then((user) => {
@@ -31,12 +33,13 @@ export const LoginForm = () => {
           alert("Credentials did not match !");
         });
     } else {
-      console.log("else");
       const user = {
         name: data.get("userName"),
         email: data.get("signupEmail"),
         password: data.get("signupPassword"),
       };
+
+      // Send user data to server to create new user
       fetch(
         `${baseURL}/addUser?name=${user.name}&email=${user.email}&password=${user.password}`
       )
@@ -51,9 +54,11 @@ export const LoginForm = () => {
   };
 
   const processUser = (user) => {
+    // Check if user is authenticated or not
     if (Object.getOwnPropertyNames(user).length === 0) {
       return;
     }
+    // Set user to currentUserState atom
     setUserState(user);
     localStorage.setItem("currentUser", JSON.stringify(user));
     router.push("/");

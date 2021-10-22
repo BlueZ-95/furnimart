@@ -33,7 +33,7 @@ export const ProductCard = ({
         {productTitle}
       </p>
       <p className="product-card__price mt-2 text-gray-800 font-bold">
-        {productPrice}
+        $ {productPrice}
       </p>
     </div>
   );

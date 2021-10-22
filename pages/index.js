@@ -12,7 +12,7 @@ const IndexPage = () => {
   useEffect(() => {
     const _currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (_currentUser) {
-      setUserState(_currentUser);
+      setUserState(_currentUser); // Set current user state fetched from local storage
     } else {
       router.push("/login");
     }

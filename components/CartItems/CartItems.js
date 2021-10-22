@@ -85,7 +85,7 @@ export const CartItems = () => {
             <div className="cart-items__receipt my-4 px-4 py-6 text-gray-700 text-lg">
               <div className="cart-items__subtotal flex justify-between my-2">
                 <p>Subtotal</p>
-                <p className="pl-3">{_totalAmount} Rs</p>
+                <p className="pl-3">$ {_totalAmount}</p>
               </div>
               <div className="cart-items__taxes flex justify-between my-2">
                 <p>Taxes</p>
@@ -93,7 +93,7 @@ export const CartItems = () => {
               </div>
               <div className="cart-items__total flex justify-between my-2 py-2 text-black font-bold border-t border-gray-300">
                 <p>Total Price</p>
-                <p className="pl-3">{_totalAmount} Rs</p>
+                <p className="pl-3">$ {_totalAmount}</p>
               </div>
             </div>
             {/* Place Order Button */}

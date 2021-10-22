@@ -19,7 +19,7 @@ export const CartItem = ({ productId, image, title, price, removeItem }) => {
       </div>
       <div className="cart-item__details pl-4 pt-2">
         <h2 className="text-xl font-bold">{title}</h2>
-        <p className="text-md">{price} Rs</p>
+        <p className="text-md">$ {price}</p>
       </div>
     </div>
   );
