@@ -35,18 +35,6 @@ export const Products = () => {
             />
           );
         })}
-        {products?.map((product, index) => {
-          return (
-            <ProductCard
-              key={product.productId}
-              productId={product.productId}
-              productImage={product.productImage}
-              productTitle={product.productName}
-              productPrice={product.productPrice}
-              addItemToCart={addItemToCart}
-            />
-          );
-        })}
       </div>
     </div>
   );
