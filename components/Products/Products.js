@@ -13,7 +13,7 @@ export const Products = () => {
   };
 
   useEffect(() => {
-    fetch(baseURL + "/products")
+    fetch(baseURL + "/getProducts")
       .then((res) => res.json())
       .then((_products) => {
         setProducts(_products);
