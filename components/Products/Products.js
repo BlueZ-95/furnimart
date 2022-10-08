@@ -13,6 +13,7 @@ export const Products = () => {
   };
 
   useEffect(() => {
+    // Get products list from server
     fetch(baseURL + "/getProducts")
       .then((res) => res.json())
       .then((_products) => {
